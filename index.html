@@ -1,1 +1,210 @@
-fdweqwdwq
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="zh_CN" class="no-js iem7"> <![endif]-->
+<!--[if lt IE 7]> <html class="ie6 lt-ie10 lt-ie9 lt-ie8 lt-ie7 no-js" lang="zh_CN"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 lt-ie10 lt-ie9 lt-ie8 no-js" lang="zh_CN"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 lt-ie10 lt-ie9 no-js" lang="zh_CN"> <![endif]-->
+<!--[if IE 9]>    <html class="ie9 lt-ie10 no-js" lang="zh_CN"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!-->
+<html class="js no-touch opacity csstransforms3d csstransitions svg cssfilters is-not-mobile-device full-urls has-search-focus" lang="zh_CN">
+<!--<![endif]-->
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1">
+<meta name="HandheldFriendly" content="true">
+<link rel="stylesheet" href="/static/css/s1764.css" type="text/css">
+<link rel="stylesheet" href="/static/css/o1764.css" type="text/css">
+<link href="/static/css/lato-open-sans.css" rel="stylesheet">
+<link rel="shortcut icon" href="/assets/doge_ico.png" type="image/png">
+<meta property="og:url" content="https://DogeDoge.com/">
+<meta property="og:site_name" content="DogeDoge">
+<title>DogeDoge 多吉搜索 — 不追踪，不误导</title>
+<meta property="og:title" content="DogeDoge — 不追踪，不误导">
+<link title="DogeDoge" type="application/opensearchdescription+xml" rel="search" href="opensearch.xml">
+<style>
+	.content-wrap--home {
+		top: 18%;
+	}
+</style>
+</head>
+<body id="pg-index" class="page-index body--home">
+<script src="/static/js/jquery.min.js"></script>
+<div class="site-wrapper site-wrapper--home js-site-wrapper">
+	<div class="header-wrap--home js-header-wrap">
+		<div class="header--aside js-header-aside">
+			<div class="header--aside__item showcase header__label">
+				<span class="header__clickable js-hl-button" data-type="showcase"><span class="js-popout-trig" aria-haspopup="true" aria-label="不追踪，不误导。" role="button" aria-pressed="false"><span id="wedonttrack">不追踪，不误导。</span></span>
+				<!-- <span class="popout-trig js-popout"><span class="js-popout-link js-showcase-popout ddgsi ddgsi-down" aria-hidden="true" data-type="showcase"></span> -->
+				
+				</span></span>
+			</div>
+		</div>
+	</div>
+	<div id="" class="content-wrap--home">
+		<div id="content_homepage" class="content--home">
+			<div class="cw--c">
+				<div class="logo-wrap--home">
+					<a id="logo_homepage_link" class="logo_homepage" href="/">
+				About DogeDoge
+					<span class="logo_homepage__tt">不追踪，不误导。</span>
+					</a>
+				</div>
+				<div class="search-wrap--home">
+					<form id="search_form_homepage" class="search--home js-search-form search--adv search--focus" name="x" method="GET" action="/results" _lpchecked="1">
+						<input id="search_form_input_homepage" class="js-search-input search__input--adv" type="text" autocomplete="off" name="q" tabindex="1" value="" autocapitalize="off" autocorrect="off">
+						<input id="search_button_homepage" class="search__button js-search-button" type="submit" tabindex="2" value="S">
+						<input id="search_form_input_clear" class="search__clear js-search-clear" type="button" tabindex="3" value="X">
+						<div id="search__autocomplete" class="search__autocomplete" style="position: absolute; display: none;"></div>
+					</form>
+				</div>
+				<div class="tag-home">
+					<div class="tag-home__wrapper">
+						<div class="tag-home__item">
+                			了解一下：<a href='/results?q=ip'>搜索「IP」查看自己当前的公网IP地址</a>
+						</div>
+					</div>
+				</div>
+				<div id="error_homepage">
+				</div>
+			</div>
+			<!-- cw -->
+		</div>
+		<!-- content_homepage //-->
+	</div>
+	<!-- content_wrapper_homepage //-->
+	<div id="footer_homepage" class="foot-home js-foot-home">
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#search_form_input_homepage').val('').focus();
+		$('#search_form_input_homepage').on('input propertychange', function() {
+			do_sugg(this);
+		});
+		$(document).mouseup(function(e){
+			var _con = $('#search_form_input_homepage,#search__autocomplete');
+			if(!_con.is(e.target) && _con.has(e.target).length === 0){
+				$("#search__autocomplete").hide();
+				$('#search_form_homepage').removeClass('has-suggestions');
+			}
+		});
+		$('#search_form_input_homepage').focus(function () {
+//			$("#search__autocomplete").show();
+			do_sugg(this);
+		});
+		$('#search_form_input_clear').click(function () {
+			$('#search_form_input_homepage').val('').focus();;
+			$('#search_form_homepage').removeClass("has-text").removeClass('has-suggestions');
+			$("#search__autocomplete").hide();
+			//$('#error_homepage').html("").hide();
+		});
+		$(document).keydown(function (event) {
+			if($('#search__autocomplete').is(':visible')){
+				keyDown(event);
+			}
+		});
+		$(document).keyup(function () {
+			var autoc = $('#search__autocomplete');
+			if(autoc.is(':visible')){
+				var o_val = autoc.val();
+				autoc.focus();
+				autoc.val('');
+				autoc.val(o_val);
+			}
+			
+		});
+	});
+	function do_sugg(obj){
+		var count = $(obj).val().length;
+		var auto_div = $("#search__autocomplete");
+		if (count>0) {
+			$('#search_form_homepage').addClass("has-text");
+			$.ajax({cache:true,url:"/sugg/"+$(obj).val(),async:true,success:function(result){
+				var tempDiv = document.createElement("DIV");
+				$('#search_form_homepage').addClass('has-suggestions');
+				auto_div.show();
+				var newDIV = $(tempDiv).addClass('acp-wrap').html(result);
+				var fake_acp = document.createElement("DIV");
+				var fake_acp = $(fake_acp).addClass('acp').attr('tabindex','0').text($(obj).val());
+				fake_acp.hide();
+				auto_div.html(newDIV);
+				newDIV.prepend(fake_acp);
+				auto_div.show();
+				auto_div.find('.acp').on({
+					mouseenter: function () {
+						$("div.acp").removeClass('acp--highlight');
+						$(this).addClass("acp--highlight");
+						$(this).click(function () {
+							$('#search_form_input_homepage').val($(this).text());
+							auto_div.hide();
+							document.getElementById('search_form_homepage').submit();
+						})
+					},
+					mouseleave: function () {
+						$("div.acp").removeClass('acp--highlight');
+					}
+				});
+			}});
+		} else {
+			$('#search_form_homepage').removeClass("has-text").removeClass('has-suggestions');
+			auto_div.hide();
+		}
+	}
+	//方向键控制页面控件焦点移动
+	function keyDown(event) {
+		var suggs = $("div.acp");                  //通过class属性值获取控件组合  
+		var this_sugg = $(".acp.acp--highlight");                  //通过class属性值获取控件组合                                       
+		var focus = document.activeElement;                 //得到处于激活状态的控件
+		var event = window.event || event;                              //获取事件
+		var key = event.keyCode;                                     //得到按下的键盘Ascii码
+		var target_input = $('#search_form_input_homepage');                                     //得到按下的键盘Ascii码
+		var this_tabindex = $(this_sugg).attr('tabindex');
+		var this_flag = 0;var last_flag = 0;
+		if (typeof this_tabindex == typeof undefined || this_tabindex == false) {
+			this_flag = 0;
+		} else {
+			this_flag = parseInt(this_tabindex);
+		}
+		var last_tabindex = $(suggs).last().attr('tabindex');
+		if (typeof last_tabindex == typeof undefined || last_tabindex == false) {
+			last_flag = 0;
+		} else {
+			last_flag = parseInt(last_tabindex);
+		}
+		switch (key) {
+			case 38:                //向上键
+				$(suggs).removeClass('acp--highlight');
+				if (this_flag>0 && this_flag<=last_flag) {
+					$(suggs[this_flag-1]).addClass('acp--highlight');
+					if (this_flag>0) {
+						target_input.val($(suggs[this_flag-1]).text());
+					}
+				} else if(this_flag==0) {
+					$(suggs[last_flag]).addClass('acp--highlight');
+					target_input.val($(suggs[last_flag]).text());
+				} else {
+					//hi
+				}
+				event.returnValue=false;
+				break;
+			case 40:                //向下键
+				$(suggs).removeClass('acp--highlight');
+				if (this_flag>=0 && this_flag<last_flag) {
+					$(suggs[this_flag+1]).addClass('acp--highlight');
+					target_input.val($(suggs[this_flag+1]).text());
+				} else {
+					$(suggs[0]).addClass('acp--highlight');
+					target_input.val($(suggs[0]).text());
+				}
+				break;
+			case 13:                //回车键
+			if (this_flag>0) {
+				target_input.val($(suggs[this_flag]).text());
+			}
+				break;
+		}
+	}
+</script>
+</body>
+</html>
